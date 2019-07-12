@@ -52,6 +52,9 @@ HelloBean obj =  ctx.getBean("helloBean", HelloBean.class);
 obj.hello();
 ```
 
+#### Bean Factory vs ApplicationContext Container
+* A bean factory is fine to simple applications, but to take advantage of the full power of the Spring framework, you may want to move up to Springs more advanced container, the application context.
+
 #### Instantiate a Container
 * Instantiating a Spring IoC container is straightforward. 
 ```
@@ -63,4 +66,5 @@ ApplicationContext ctx = new ClassPathXmlApplicationContext("beans.xml");
 ((ClassPathXmlApplicationContext) ctx).close();
 ```
 
-#### 
+#### What is DI ?
+* While Dependency injection is a pattern used to create instances of objects that other objects rely on without knowing at compile time which class will be used to provide that functionality

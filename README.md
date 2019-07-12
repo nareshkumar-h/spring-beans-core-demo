@@ -122,4 +122,56 @@ public class TransactionDAO {
 ```
 
 #### Bean Scopes
-![](beanscope.png)
+![](bean_scope.png)
+
+#### Lifecycle Callbacks
+* To interact with the container’s management of the bean lifecycle, you can implement the Spring InitializingBean and DisposableBean interfaces. The container calls afterPropertiesSet() for the former and destroy() for the latter to let the bean perform certain actions upon initialization and destruction of your beans
+```
+import org.springframework.beans.factory.DisposableBean;
+import org.springframework.beans.factory.InitializingBean;
+
+public class HelloBean implements InitializingBean, DisposableBean {
+
+	public void destroy() throws Exception {
+		System.out.println("HelloBean->destroy");
+	}
+
+	public void afterPropertiesSet() throws Exception {
+		System.out.println("HelloBean->afterPropertiesSet");
+	}
+
+	public void hello() {
+		System.out.println("HelloBean->hello");
+	}
+
+}
+```
+
+#### Custom init and destroy method
+```
+package com.naresh.demo;
+
+public class DemoBean {
+
+	public void customInit() {
+		System.out.println("DemoBean - init");
+	}
+	
+	public void customDestroy() {
+		System.out.println("DemoBean - destroy");
+	}
+	
+
+	public void hello() {
+		System.out.println("DemoBean->hello");
+	}
+
+}
+
+```
+```
+<bean id="demoBean" class="com.naresh.demo.DemoBean"
+	init-method="customInit" destroy-method="customDestroy">
+		
+	</bean>
+```

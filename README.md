@@ -120,3 +120,6 @@ public class TransactionDAO {
 	}
 }
 ```
+
+#### Bean Scopes
+![](beanscope.png)

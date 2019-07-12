@@ -68,3 +68,55 @@ ApplicationContext ctx = new ClassPathXmlApplicationContext("beans.xml");
 
 #### What is DI ?
 * While Dependency injection is a pattern used to create instances of objects that other objects rely on without knowing at compile time which class will be used to provide that functionality
+
+#### Types of Dependency Injection
+* Constructor Based Injection
+* Setter Based Injection
+
+#### Constructor Based Injection
+```
+<bean id="accountDAO" class="com.naresh.dao.AccountDAO"
+		scope="prototype">
+		<constructor-arg index="0" ref="dataSource" />
+	</bean>
+
+	<bean name="dataSource"
+		class="org.apache.commons.dbcp2.BasicDataSource">
+		<property name="driverClassName"
+			value="oracle.jdbc.driver.OracleDriver" />
+		<property name="url"
+			value="jdbc:oracle:thin:@trainingdb.cmqwe8vrjnur.us-east-1.rds.amazonaws.com:1521:orcl" />
+		<property name="username" value="naresh" />
+		<property name="password" value="password" />
+
+	</bean>
+```
+```
+public class AccountDAO {
+
+	private DataSource dataSource;
+	
+	public AccountDAO(DataSource dataSource) {
+		System.out.println("AccountDAO -> Constructor Based Injection ");
+		this.dataSource = dataSource;
+	}
+}
+```
+
+#### Setter Based Injection
+```
+<bean id="transactionDAO" class="com.naresh.dao.TransactionDAO">
+		<property name="name" value="naresh" />
+	</bean>
+```
+```
+public class TransactionDAO {
+
+	private String name;
+	
+	public void setName(String name) {
+		System.out.println("TransactionDAO- setter based injection");
+		this.name = name;
+	}
+}
+```

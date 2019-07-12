@@ -175,3 +175,18 @@ public class DemoBean {
 		
 	</bean>
 ```
+
+
+#### Lifecycle of a Bean
+* (I) - Instantiation - Creates the bean instance
+* (P) - Populate Properties - Dependency is injected
+* (N) - Set Name - Sets the name of the bean in the bean factory that created it
+* (F) - Set Factory - Supplies the owning factory to a bean instance
+* (C) - Set Application Context - Sets the ApplicationContext that this object runs in
+* (B) - Before Post Processing - Apply this BeanPostProcessor to the given new bean instance before any bean initialization
+* (A) - After Populate Properties - Invoked by a Bean Factory after it has set all bean properties supplied
+* (I) - Custom Init - Invoked
+* (A) - After Post Processing - Apply this BeanPostProcessor to the given new bean instance after any bean initialization
+* (U) - Use - Use the bean
+* (D) - Destroy - Invoked by a BeanFactory on destruction of a singleton
+* (D) - Custom Destroy - Executed if there is any defined destroy-method attributes

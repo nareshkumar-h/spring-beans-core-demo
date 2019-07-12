@@ -1,0 +1,43 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
+
+	<bean id="userDAO" class="com.naresh.dao.UserDAO"
+		scope="singleton">
+
+	</bean>
+
+
+
+	<bean id="accountDAO" class="com.naresh.dao.AccountDAO"
+		scope="prototype">
+		<constructor-arg index="0" ref="dataSource" />
+	</bean>
+
+	<bean name="dataSource"
+		class="org.apache.commons.dbcp2.BasicDataSource">
+		<property name="driverClassName"
+			value="oracle.jdbc.driver.OracleDriver" />
+		<property name="url"
+			value="jdbc:oracle:thin:@trainingdb.cmqwe8vrjnur.us-east-1.rds.amazonaws.com:1521:orcl" />
+		<property name="username" value="naresh" />
+		<property name="password" value="password" />
+
+	</bean>
+
+	<bean id="transactionDAO" class="com.naresh.dao.TransactionDAO">
+		<property name="name" value="naresh" />
+	</bean>
+	
+	
+	<bean id="helloBean" class="com.naresh.demo.HelloBean">
+		
+	</bean>
+	
+	
+	<bean id="demoBean" class="com.naresh.demo.DemoBean"
+	init-method="customInit" destroy-method="customDestroy">
+		
+	</bean>
+</beans>
